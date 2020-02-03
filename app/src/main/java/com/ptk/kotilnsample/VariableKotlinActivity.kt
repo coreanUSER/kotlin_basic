@@ -6,7 +6,7 @@ import kotlinx.android.synthetic.main.layout_variable.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class VariableKatlinActivity : AppCompatActivity() {
+class VariableKotlinActivity : AppCompatActivity() {
 
     // var
     // 변경 가능한 참조, 변경 가능하다는 의미의 'Variable'을 나타냅니다.

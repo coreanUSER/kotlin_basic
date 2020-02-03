@@ -29,10 +29,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, VariableJavaActivity::class.java))
         }
 
-        // button3 클릭된 경우의 이벤트 리스너 설정
+        // button4 클릭된 경우의 이벤트 리스너 설정
         button4.setOnClickListener {
             // Intent 로 BmiKotlinActivity 를 타겟으로 지정하고 startActivity 로 실행
-            startActivity(Intent(this@MainActivity, VariableKatlinActivity::class.java))
+            startActivity(Intent(this@MainActivity, VariableKotlinActivity::class.java))
+        }
+
+        // button5 클릭된 경우의 이벤트 리스너 설정
+        button5.setOnClickListener {
+            // Intent 로 BmiKotlinActivity 를 타겟으로 지정하고 startActivity 로 실행
+            startActivity(Intent(this@MainActivity, ControlJavaActivity::class.java))
+        }
+
+        // button6 클릭된 경우의 이벤트 리스너 설정
+        button6.setOnClickListener {
+            // Intent 로 BmiKotlinActivity 를 타겟으로 지정하고 startActivity 로 실행
+            startActivity(Intent(this@MainActivity, ControlKotlinActivity::class.java))
         }
     }
 }
