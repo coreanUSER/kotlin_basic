@@ -29,11 +29,13 @@ class ControlKotlinActivity : AppCompatActivity() {
 
             // when 문은 케이스로 조건식도 사용가능
             when {
-                number % 2 == 0 -> toastShort("${number} 는 2의 배수입니다.")
+                number % 2 == 0 -> toast("${number} 는 2의 배수입니다.")
 //                    Toast.makeText(applicationContext, "${number} 는 2의 배수입니다.", Toast.LENGTH_SHORT).show()
-                number % 3 == 0 -> toastShort("${number} 는 3의 배수입니다.")
+                number % 3 == 0 -> toast("${number} 는 3의 배수입니다.", Toast.LENGTH_SHORT)
 //                    Toast.makeText(applicationContext, "${number} 는 3의 배수입니다.", Toast.LENGTH_SHORT).show()
-                else -> toastShort("${number}")
+                else -> toast(message = "${number}", length = Toast.LENGTH_SHORT)
+                //  코틀린에서는 함수를 호출함에 있어 인자 앞에 이름을 사용할 수 있습니다.
+                // '이름 붙인 인자'는 함수의 파라미터가 많을 때, 코드를 읽기 쉽게 만들어 줍니다.
 //                    Toast.makeText(applicationContext, "${number}", Toast.LENGTH_SHORT).show()
             }
 
@@ -41,7 +43,6 @@ class ControlKotlinActivity : AppCompatActivity() {
             when (number) {
                 // when 문 안에서 'in' 키워드를 사용하면 '..' 기호를 이용해 범위를 지정할 수 있다.
                 // 코틀린의 when 문안에서는 ',' 연산자도 사용할 수 있다.
-
                 in 1..4 -> button.text = "실행 - 4"
                 // 코드가 2라인 이상인 경우, {}를 사용해 감싸줄 수 있다.
                 9, 18 -> {

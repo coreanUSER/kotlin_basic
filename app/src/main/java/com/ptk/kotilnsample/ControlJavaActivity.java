@@ -32,15 +32,18 @@ public class ControlJavaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 int number = Integer.parseInt(numberField.getText().toString());
 
+                // Java 코드에서 코틀린의 최상위 함수를 사용하기 위해서는 최사우이 함수가 선언된 코틀린 파일의 이름을 따서 생성된
+                // '클래스 이름'(예, ToastUtilKotlin.kt -> ToastUtilKotlinKT) 을 유추하여 호출하면 됩니다.
+
                 // if, else if, else 문으로 2의 배수, 3의 배수를 체크해 서로 다른 토스트 메세지를 보여준다.
                 if (number % 2 == 0) {
-                    ToastUtilJava.toastShort("" + number + "는 2의 배수입니다.");
+                    ToastUtilJava.toast("" + number + "는 2의 배수입니다.", Toast.LENGTH_SHORT);
 //                    Toast.makeText(getApplicationContext(), "" + number + "는 2의 배수입니다.", Toast.LENGTH_SHORT).show();
                 } else if (number % 3 == 0) {
-                    ToastUtilJava.toastShort("" + number + "는 3의 배수입니다.");
+                    ToastUtilJava.toast("" + number + "는 3의 배수입니다.");
 //                    Toast.makeText(getApplicationContext(), "" + number + "는 3의 배수입니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    ToastUtilJava.toastShort("" + number);
+                    ToastUtil.toastShort("" + number);
 //                    Toast.makeText(getApplicationContext(), "" + number, Toast.LENGTH_SHORT).show();
                 }
 
