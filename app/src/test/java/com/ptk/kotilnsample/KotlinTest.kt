@@ -103,4 +103,77 @@ class KotlinTest {
         // 두 객체의 해시코드가 같은지 비교한다.
         Assert.assertEquals(fruit1.hashCode(), fruit2.hashCode())
     }
+
+    @Test
+    fun testLambda1() {
+        // 함수의 파라미터로 람다식 전달
+        println(sum(1, 2))
+        // 람다식 반환 값으로 비교
+        Assert.assertEquals(4, sum(1, 3))
+
+        // LambdaEx.kt 파일에서 선언한 sum 은 '최상위 프로퍼티'이기 때문에 바로 접근이 가능
+        // 함수의 파라미터로 sum 을 전달할 수도 있는 등 자유롭게 사용 가능하다.
+        // 코틀린이 함수를 일급객체로 취급하기 때문,
+        // '일급 객체(First Class Citizen)'이란 함수형 프로그래밍에서 주로 사용하는 용어로 다음 조건을 만족해야 함
+        //  - 변수와 자료 구조에 할당 가능해야 한다.
+        //  - 함수의 파라미터로 전달이 가능해야 한다.
+        //  - 함수의 반환값으로 전달이 가능해야 한다.
+        //  - 동등성 비교가 가능해야 한다.
+
+        // 함수에 람다 표현식을 바로 전달
+        Assert.assertEquals(4, { x: Int, y: Int -> x * y }(2, 2))
+
+        // 람다표현식 내부에서 람다표현식을 반환
+        val exp = { x: Int, y: Int ->
+            { z: Int -> (x + y) * z }
+        }
+        // exp2 --> {z: Int -> {(3 + 2) * z}}
+        val exp2 = exp(3, 2)
+        // result --> (3 + 2) * 4
+        val result = exp2(4)
+        // 결과확인
+        Assert.assertEquals(20, result)
+    }
+
+    @Test
+    fun testCollectionApi() {
+        // 함수형 프로그래밍 스타일을 활용하면, 'Collection(컬랙션)'과 같은 데이터의 집합을 다루기 편리하다.
+        // 코틀린은 컬렉션을 다룰 수 있는 여러 표준 라이브러리를 제공한다.
+        // Collection 의 함수형 API
+
+        // 컬렉션을 만든다
+        val list = listOf(1, "2", 3, 4, 5.7, 1, 2)
+
+        // filter: 컬렉션에서 특정 조건이 맞는 항목만 추출하여 새로운 컬렉션을 만든다 -> Int 타입만 추출
+        println(list.filter { item -> item is Int })
+
+        // 람다 표현식에서 파라미터가 하나인 경우 생략이 가능하다
+        // 파라미터는 it 키워드로 접근가능
+        println(list.filter { it is Int })
+
+        // map: 컬렉션에서 아이템을 변환하여 새로운 컬렉션을 만든다. 아래 코드는 String 의 컬렉션이 만들어진다.
+        println(list.map { "value: ${it}" })
+
+        // filter 에서 반한된 컬렉션을 map 으로 변환
+        println(list.filter { it is Int }.map { "value: ${it}" })
+
+        // 아이템을 찾는다
+        println(list.find { it is Double })
+
+        // 컬렉션을 그룹화하여 Map<String, List<T>> 형태로 만든다. 아래 코드는 각 아이템의 클래스 별로 그룹화 한다.
+        val map = list.groupBy { it.javaClass }
+        println(map)
+
+        // 컬렉션 안에 컬렉션이 있는 새로운 리스트를 만든다.
+        val list2 = listOf(listOf(1, 2), listOf(3, 4))
+        println(list2)
+
+        // map 으로 항목을 변환한다.
+        println(list2.map { "value: ${it}" })
+
+        // flatmap 으로 리스트를 평평하게 만들고 변환한다.
+        println(list2.flatMap { it.toList() })
+
+    }
+
 }
