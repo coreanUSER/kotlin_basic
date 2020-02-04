@@ -176,4 +176,11 @@ class KotlinTest {
 
     }
 
+    @Test
+    fun testExtensions() {
+        val str = "Hello, Extensions"
+        // laostString() 함수를 원래 String 클래스의 메소드처럼 사용 가능
+        Assert.assertEquals("s", str.lastString())
+    }
+
 }

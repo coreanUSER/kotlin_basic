@@ -138,4 +138,36 @@ public class JavaTest {
         Assert.assertEquals(fruitJava1.hashCode(), fruitJava2.hashCode());
     }
 
+    @Test
+    public void testExtFunc(){
+        // 자바에서 코틀린의 확장함수 호출 방법은 최상위 함수 호출 방법과 같음
+        // 최상위 함수와 달리 확장 함수는 함수의 호출 형태가 다름
+        // 확장 함수는 수진 객체 타입을 제외한 '이름'으로 호출하며,
+        // 수신 객체 타입은 함수의 첫번째 파라미터가 된다.
+        // Java 에서 확장 함수의 실체는 '정적 함수'이며, 클래스에 포함되는 것이 아니다.
+        // 또, 확장 함수는 하위 클래스로 상속되지 않는다.
+
+        // 확장 함수는 실제로 클래스에 포함된 것이 아닌 정적 함수이며,
+        // 단지 코틀린에서 편하게 사용할 수 있도록 하는 '문법적 편의'이다.
+        String lastString = StringExtKt.lastString("apple");
+        Assert.assertEquals("e", lastString);
+    }
+
+    @Test
+    public void testNPE1(){
+        NPE npe = new NPE();
+        // 3글자에 단어를 함수에 전달해 결과 테스트
+        Assert.assertEquals(3, npe.strLen("abc"));
+
+        // Null 을 전달할 때 테스트
+        // Null Pointer Exception
+//        Assert.assertEquals(0, npe.strLen(null));
+    }
+
+    @Test
+    public void testNullType() {
+//        Assert.assertEquals(true, null instanceof String);
+        // Java 의 String 타입의 변수에는 'String 타입의 객체' 또는 'Null'이 올 수 있지만, 2가지 타입은 완전히 다르다.
+        // Null 은 String 타입의 연산을 실행할 수 없기 때문이다.
+    }
 }
