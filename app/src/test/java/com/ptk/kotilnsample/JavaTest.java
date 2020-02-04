@@ -54,7 +54,7 @@ public class JavaTest {
         Assert.assertEquals("apple", person.getNickname());
     }
 
-    @Test
+//    @Test
     public void testMoveObject(){
         MoveObject moveObject = new MoveObject();
         // MoveObject 의 speed 를 아직 설정하지 않았으므로 0 인 상태로 calcAccuracy 함수를 호출
@@ -66,10 +66,10 @@ public class JavaTest {
         // MoveObject 의 실제 구현체를 CantMoveObject 로 생성
         MoveObject cantMoveObject = new CantMoveObject();
         // 똑같이 speed 를 설정하지 않고 calcAccuracy 를 호출
-//        accuracy = Calculator.calcAccuracy(cantMoveObject, 3);
+        accuracy = Calculator.calcAccuracy(cantMoveObject, 3);
         // 위 코드에서 이미 에러가 발생해 실행되지 않음.
         // java.lang.ArithmeticException: / by zero -> '0'으로 나눗셈을 했을 때 발생
-//        Assert.assertEquals(1, cantMoveObject.getSpeed());
+        Assert.assertEquals(1, cantMoveObject.getSpeed());
 
         // MoveObject 를 사용하는 'Calculator'입장에서는 MoveObject 가 실제로는 어느 클래스인지 상관없이 사용할 수 있어야 한다.
         // 상속으로 오버라이딩을 하면서 Calculator 는 MoveObject 가 실제로 어떤 클래스인지 알 수 없어 에러가 발생하게 된다.
@@ -83,5 +83,59 @@ public class JavaTest {
         // 여기서 말하는 '상속'은 '인터페이스 상속'이 아니라 '코드의 구현을 상속받는 경우'를 말한다.
     }
 
+    @Test
+    public void testSingletonJava(){
+        // 생성자를 private 로 감췄기 때문에 new 로 생성불가 - 주석을 풀면 에러 발생
+        // SingletonJava singletonJava = new SingletonJava();
+
+        // 외부에 공개된 getInstance() 메소드로 객체에 접근
+        SingletonJava singletonJava = SingletonJava.getInstance();
+
+        // 객체의 메소드 사용가능
+        singletonJava.log("hi, singleton");
+    }
+
+    @Test
+    public void testFruit(){
+        FruitJava fruitJava = new FruitJava();
+        fruitJava.fruitName = "사과";
+        fruitJava.description = "사과는 맛있다.";
+        // 객체를 넘기면 자동으로 toString() 메소드 실행
+        System.out.println(fruitJava);
+    }
+
+    @Test
+    public void testFruitEquals(){
+        // FruitJava 객체 2개를 생성한다.
+        FruitJava fruitJava1 = new FruitJava();
+        FruitJava fruitJava2 = new FruitJava();
+
+        // 모든 속성을 같게 한다.
+        fruitJava1.fruitName = "바나나";
+        fruitJava2.fruitName = "바나나";
+
+        fruitJava1.description = "바나나는 길다.";
+        fruitJava2.description = "바나나는 길다.";
+
+        // 두 객체가 같은지 확인
+        Assert.assertEquals(fruitJava1, fruitJava2);
+    }
+
+    @Test
+    public void testFruitHashCode(){
+        // FruitJava 객체 2개를 생성한다.
+        FruitJava fruitJava1 = new FruitJava();
+        FruitJava fruitJava2 = new FruitJava();
+
+        // 모든 속성을 같게 한다.
+        fruitJava1.fruitName = "바나나";
+        fruitJava2.fruitName = "바나나";
+
+        fruitJava1.description = "바나나는 길다.";
+        fruitJava2.description = "바나나는 길다.";
+
+        // 두 객체가 같은지 확인
+        Assert.assertEquals(fruitJava1.hashCode(), fruitJava2.hashCode());
+    }
 
 }

@@ -86,4 +86,21 @@ class KotlinTest {
         Assert.assertEquals("dog", animal.name)
         Assert.assertEquals(21, animal.age)
     }
+
+    @Test
+    fun testFruit(){
+        // 객체의 속성 값을 같도록 Fruit 객체 2개 생성
+        val fruit1 = Fruit("바나나", "바나나는 길어")
+        val fruit2 = Fruit("바나나", "바나나는 길어")
+
+        // 각각 프린트한다. toString() 호출
+        println(fruit1)
+        println(fruit2)
+
+        // 두 객체가 같은지 비교한다. equals() 호출
+        Assert.assertEquals(fruit1, fruit2)
+
+        // 두 객체의 해시코드가 같은지 비교한다.
+        Assert.assertEquals(fruit1.hashCode(), fruit2.hashCode())
+    }
 }
