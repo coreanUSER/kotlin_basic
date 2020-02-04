@@ -21,4 +21,18 @@ class PropertySample {
         get(): String {
             return "Alice"
         }
+
+    // 코틀린은 클래스 내부에서도 멤버 변수를 이름으로 직접 접근할 수 없다.
+    // 코틀린은 Field 를 사요하지 않기 때문이다.
+
+    // 프로퍼티의 Getter, Setter 에서도 코틀린은 Field 를 사용하지 않기 때문에 프로퍼티의 이름은 결국 Getter, Setter 가 호출되어 버린다. -> 무한히 반복됨 -> StackOverflow
+    // 프로퍼티의 '이름'이 아닌 'field'라는 키워드로 프로퍼티의 '값'에 접근할 수 있다.
+    // 이렇게 '접근자(Getter, Setter)'에서 field 키워드로 사용되는 개념을 '프로퍼티를 뒷파침하는 필드'라는 의미의 'Backing Field'라 부른다.
+    // Backing Field 는 클래스 내부의 접근자에서만 사용 가능하다.
+
+    // 코틀린은 Field 를 사용하지 않음으로써 '속성 위임'이나 '인터페이스에 프로퍼티 추가' 등을 할 수 있다.
+    var nickname: String = ""
+        set(value: String) {
+            field = value.toLowerCase()
+        }
 }
